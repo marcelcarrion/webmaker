@@ -6,4 +6,4 @@ ffmpeg
 
 # Usage
 Just input the video filename eg:
-$webmaker example.mp4 
+$webmaker example.mp4 or $webmaker example.mp4 filename
