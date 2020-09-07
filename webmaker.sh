@@ -19,9 +19,11 @@ ffmpeg -i "$vid" -vf "fps=$fps,scale=$scl:-1:flags=lanczos,split[s0][s1];[s0]pal
 2)
 read -p 'bitrate in M:' bitr
 #video to webm
-read -p 'no audio(y)?' audio
-[ $audio = "y" ] && an=" -an"
-ffmpeg -i "$vid" -c:v libvpx -vb $bitr'M'$an "$finame.webm"
+read -p 'no audio(empty if you want audio)?' audio
+[ -z $audio ] || an=" -an"
+read -p 'scale in p(empty if none)' res
+[ -z $res ] || res=" -vf scale=-1:"$res
+ffmpeg -i "$vid" -c:v libvpx -vb $bitr'M'$an$res "$finame.webm"
 ;;
 *)
 echo 'Invalid option!'
